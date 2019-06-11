@@ -7,9 +7,6 @@ const constructionSchema = new Schema({
     type: String,
     required: true
   },
-  outcome:{
-    type:String
-  },
   address:{
     type:String
   },
@@ -20,14 +17,22 @@ const constructionSchema = new Schema({
     type:String
   },
   initialDate:{
-    type: Date
+    type: String
   },
 
   phoneResponsible:{
     type:String
   },
 
-
+  outcomes: [
+    {
+    outcome: { type: Schema.Types.ObjectId, ref: "Outcome" }
+    }
+],
+  
+  images:{
+    type:[String]
+  }
   
 })
 

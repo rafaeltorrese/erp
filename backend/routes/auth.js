@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const User = require('../models/User')
 
+
+
 router.post('/register', (req, res) => {
   const salt = bcrypt.genSaltSync(10)
   const hasshedPassword = bcrypt.hashSync(req.body.password, salt)

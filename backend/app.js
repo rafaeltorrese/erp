@@ -55,10 +55,17 @@ const index = require('./routes/index');
 const auth = require('./routes/auth')
 const activities = require('./routes/activities')
 const outcomes = require('./routes/outcomes')
+const suppliers = require('./routes/suppliers')
+const constructions = require('./routes/construction')
+
 
 app.use('/', index);
 app.use('/api/auth' , auth)
 app.use('/api/activities' , activities)
 app.use('/api/outcomes' , outcomes)
+app.use('/api/suppliers' , suppliers)
+app.use('/api/constructions' , constructions)
+
+
 
 module.exports = app;

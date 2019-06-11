@@ -1,12 +1,12 @@
 const express = require("express")
 const router = express.Router();
 const Activity = require("../models/Activity")
-
+const authUtils = require("../helpers/auth")
 
 
 router.post(
   "/",
-  //authUtils.verifyToken,
+  authUtils.verifyToken,
   (req, res) => {
     const { unitPrice, quantity } = req.body;;
     req.body["total"] = quantity * unitPrice;
@@ -27,7 +27,7 @@ router.post(
 
 
 // get all activities
-router.get("/", (req, res) => {
+router.get("/", authUtils.verifyToken,(req, res) => {
   //const { _id } = req.user;
   Activity.find()
     .then(activities => {
@@ -44,7 +44,7 @@ router.get("/", (req, res) => {
 
 // delete activity
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authUtils.verifyToken,(req, res) => {
   const { id } = req.params;
   //const { _id: author } = req.user;
 
@@ -62,11 +62,12 @@ router.delete("/:id", (req, res) => {
 
 
 // update 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",  (req, res) => {
   const { id } = req.params;
-  const { unitPrice, quantity } = req.body;;
+  const { unitPrice, quantity } = req.body;
   let newTotal = quantity * unitPrice;
   req.body["total"] = newTotal
+  
   Activity.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true })
     .then(activity => {
       res.status(200).json({ activity });
@@ -78,10 +79,6 @@ router.patch("/:id", (req, res) => {
       });
     });
 });
-
-
-
-
 
 
 module.exports = router;

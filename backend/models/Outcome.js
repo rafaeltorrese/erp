@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 const outcomeSchema = new Schema({
 
   name: {
-    type: String
+    type: String,
+    required:true
   },
 
   code: {
@@ -14,19 +15,24 @@ const outcomeSchema = new Schema({
   },
 
   activities: [{
-    activity: { type: Schema.Types.ObjectId, ref: "Activity" },
-    description:{type:String}
+    activity: { type: Schema.Types.ObjectId, ref: "Activity" }
   }],
+  
+  description:{
+    type:String
+  },
   total:{
     type:Number,
     default:0
   },
+
   active:{
     type:Boolean,
     defaul:false
   },
   usage:{
-    enum:["Specific", "General"]
+    enum:["Specific", "General"],
+    type:String
   }
 
 })
