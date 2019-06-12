@@ -7,9 +7,6 @@ const constructionSchema = new Schema({
     type: String,
     required: true
   },
-  address:{
-    type:String
-  },
   responsible:{
     type:String
   },
@@ -32,9 +29,21 @@ const constructionSchema = new Schema({
   
   images:{
     type:[String]
+  },
+  location:{
+    type:{
+      type:String,
+      default:"Point"
+    },
+    street:{
+      type:String
+    },
+    coordinates:{
+      type:[Number]
+    }
   }
   
-})
+},{timestamps:true})
 
-
+constructionSchema.index({location:"2dsphere"})
 module.exports = mongoose.model("Construction", constructionSchema)

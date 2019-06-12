@@ -46,7 +46,7 @@ router.post('/login', (req, res) => {
     if (!passwordIsValid) {
       return res.status(401).json({
         error: {},
-        message: 'Contraseña incorrecta'
+        message: 'Incorrect Password'
       })
     }
 

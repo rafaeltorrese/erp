@@ -15,8 +15,10 @@ transport.verify(function(error, success) {
     console.log(error);
   } else {
     console.log("Server is ready to take our messages");
-  }
+  } 
 });
+
+
 
 const generateHTML = (filename, options) => {
   const html = hbs.compile(
@@ -34,6 +36,7 @@ exports.send = options => {
     to: options.email,
     subject: options.subject,
     message: options.message,
+    confirmationUrl:options.confirmationUrl,
     html
   };
   return transport.sendMail(mailOptions);
