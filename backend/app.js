@@ -8,7 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const cors = require("cors")
 
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
@@ -30,6 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -37,7 +39,12 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
+app.use(
+  cors({
+    origin: ['http://localhost:3001', 'https://erphack.herokuapp.com'],
+  })
+)
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

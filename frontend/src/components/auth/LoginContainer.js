@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Login from './LoginForm';
-import Signup from  './SignUpForm';
+import Signup from './SignUpForm';
 import { login, register } from '../../services/auth';
 
 import { Card } from 'antd';
@@ -15,7 +15,7 @@ class LoginContainer extends Component {
 	};
 
 	handleText = (e) => {
-		let data = this.state.data;
+		let {data} = this.state;
 		let field = e.target.name;
 		data[field] = e.target.value;
 		this.setState({ data });
@@ -31,10 +31,15 @@ class LoginContainer extends Component {
 	}
 	onLogin = () => {
 		let { data } = this.state
-		login(data, this.props.history).then(r=>{}).catch(err =>{
-
+		login(data).then(r => { 
+			console.log("Que es esto" , r)
+			message.info('Welcome');
+			this.props.history.push('/home')
+		}).catch(err => {
+			console.log("error", err)
+			message.info('OH');
 		})
-		message.info('Welcome');
+		
 		this.setState({ data: {} })
 		console.log("Here", data)
 	}
