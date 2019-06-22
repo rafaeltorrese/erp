@@ -30,26 +30,26 @@ class MainPage extends Component {
 
 	//user Edit
 
-	componentWillMount() {
-		const userToken = (localStorage.getItem('token'));
-		const userData = JSON.parse(localStorage.getItem('user'));
-		if (!userToken) {
-			this.props.history.push('/login');
-		} else {
-			this.setState({ user: userData })
-			console.log(userData)
-			getConstructions()
-				.then(res => {
+	// componentWillMount() {
+	// 	const userToken = (localStorage.getItem('token'));
+	// 	const userData = JSON.parse(localStorage.getItem('user'));
+	// 	if (!userToken) {
+	// 		this.props.history.push('/');
+	// 	} else {
+	// 		this.setState({ user: userData })
+	// 		console.log(userData)
+	// 		getConstructions()
+	// 			.then(res => {
 
-					this.setState({ constructions: res.data})
-					console.log("respuesta", res)
-				})
-				.catch(err => {
-					console.error(err);
-				})
+	// 				this.setState({ constructions: res.data})
+	// 				console.log("respuesta", res)
+	// 			})
+	// 			.catch(err => {
+	// 				console.error(err);
+	// 			})
 
-		}
-	}
+	// 	}
+	// }
 
 
 	toggle = () => {
@@ -60,7 +60,7 @@ class MainPage extends Component {
 	logOut = () => {
 		localStorage.clear()
 		message.info('Hasta luego');
-		this.props.history.push('/login');
+		this.props.history.push('/');
 	};
 
 	onOpenChange = (openKeys) => {
