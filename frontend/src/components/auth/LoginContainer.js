@@ -15,7 +15,7 @@ class LoginContainer extends Component {
 	};
 
 	handleText = (e) => {
-		let {data} = this.state;
+		let { data } = this.state;
 		let field = e.target.name;
 		data[field] = e.target.value;
 		this.setState({ data });
@@ -31,15 +31,15 @@ class LoginContainer extends Component {
 	}
 	onLogin = () => {
 		let { data } = this.state
-		login(data).then(r => { 
-			console.log("Que es esto" , r)
+		login(data).then(r => {
+			console.log("Que es esto", r)
 			message.info('Welcome');
 			this.props.history.push('/home')
 		}).catch(err => {
 			console.log("error", err)
-			message.info('OH');
+			message.info('Usuario o contraseña inválida');
 		})
-		
+
 		this.setState({ data: {} })
 		console.log("Here", data)
 	}
@@ -54,21 +54,17 @@ class LoginContainer extends Component {
 
 					<div className="header">
 
-						<span className="title">My Numbers</span>
+						<span className="title">ERPHACK</span>
 					</div>
 					<div>
 						{
-							pathname === '/login' ?
-
+							pathname === '/' ?
 								<Login
 									data={data}
 									onLogin={this.onLogin}
 									handleText={this.handleText}
 								/>
-
-
 								:
-
 								<Signup handleText={this.handleText} data={data} onRegister={this.onRegister} />
 
 

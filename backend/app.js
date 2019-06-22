@@ -73,6 +73,8 @@ app.use('/api/outcomes' , outcomes)
 app.use('/api/suppliers' , suppliers)
 app.use('/api/constructions' , constructions)
 
+
+// this is important
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, "public", 'index.html'))
 })

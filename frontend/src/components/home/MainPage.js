@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Layout, message } from 'antd';
 
 import LeftSide from "./Drawer";
-import Sections from "./Sections";
+// import Sections from "./Sections";
 import Navbar from "../navbar/Navbar";
 //import { readActivo } from "../services/Activo"
 //import { readCompanys } from '../services/Company'
-
+import { getConstructions } from "../../services/constructions"
 
 const { Header, Sider, Content } = Layout;
 
@@ -21,9 +21,8 @@ class MainPage extends Component {
 	state = {
 		collapsed: false,
 		user: {},
-		openKeys: [],
-		companys: [],
-		activos: []
+		constructions: [],
+		
 	};
 
 
@@ -39,17 +38,15 @@ class MainPage extends Component {
 		} else {
 			this.setState({ user: userData })
 			console.log(userData)
-			readCompanys(userData._id)
+			getConstructions()
 				.then(res => {
 
-					this.setState({ companys: res.data.negocio })
+					this.setState({ constructions: res.data})
 					console.log("respuesta", res)
 				})
 				.catch(err => {
 					console.error(err);
 				})
-
-
 
 		}
 	}
@@ -72,22 +69,11 @@ class MainPage extends Component {
 
 	}
 
-	getBalance = (data) => {
-		console.log("getBalance", data)
-		readActivo(data._id)
-			.then(res => {
-
-				this.setState({ activos: res.data.activo })
-				console.log("respuesta", res)
-			})
-			.catch(err => {
-				console.error(err);
-			})
-	}
+	
 
 
 	render() {
-		let { companys, activos } = this.state
+		let { constructions } = this.state
 		return (
 
 			<Layout className={'leftside'}>
@@ -97,8 +83,10 @@ class MainPage extends Component {
 					collapsed={this.state.collapsed}
 				>
 					<div className="logo" >{!this.state.collapsed ? 'RANCHOADMIN' : 'ADMIN'}</div>
-					<LeftSide activos={activos} getBalance={this.getBalance} onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} companys={companys} />
+					<LeftSide  onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} constructions={constructions} />
 				</Sider>
+
+
 				<Layout>
 					<Header style={{ background: '#fff', padding: 0 }}>
 						<Navbar
@@ -108,7 +96,7 @@ class MainPage extends Component {
 							toggle={this.toggle} />
 					</Header>
 					<Content style={{ margin: '1%', padding: '1%', background: '#f0f2f5', minHeight: '90vh' }}>
-						<Sections />
+					
 					</Content>
 				</Layout>
 			</Layout>

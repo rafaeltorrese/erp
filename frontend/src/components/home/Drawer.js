@@ -22,9 +22,7 @@ const LeftSide = ({onOpenChange, user, openKeys,companys,getBalance,activos}) =>
             <SubMenu key={i} title={data.nombre} onTitleClick={()=>getBalance(data)}>
               <SubMenu key="sub3" title="Balance Genera">
               <SubMenu key="sub4" title="Activo">
-              {activos.map((data,i)=>
-                  <Menu.Item key={i}><Link to={`/home/resumen/${data._negocio._id}`}>sub Activo</Link></Menu.Item>
-                )}
+              
               </SubMenu>
               </SubMenu>
               <SubMenu key="sub5" title="Estado de Resultados">

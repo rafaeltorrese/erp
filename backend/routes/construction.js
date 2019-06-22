@@ -23,7 +23,7 @@ uploader.array("images"),
 });
 
 
-// get all outcomes
+// get all construction
 router.get("/", (req, res) => {
   //const { _id } = req.user;
   Construction.find()

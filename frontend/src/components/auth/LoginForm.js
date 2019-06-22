@@ -19,7 +19,6 @@ class LoginForm extends Component {
 		});
 	};
 
-
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		const { handleText, data } = this.props;

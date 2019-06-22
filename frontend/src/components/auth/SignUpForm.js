@@ -106,7 +106,7 @@ class SignupForm extends Component {
                     </Button>
 				</FormItem>
 
-				<span>¿Ya tienes cuenta? <Link to='/login'>Inicia sesión</Link> </span>
+				<span>¿Ya tienes cuenta? <Link to='/'>Inicia sesión</Link> </span>
 			</Form>
 		);
 	}
