@@ -17,23 +17,18 @@ const LeftSide = ({onOpenChange, user, openKeys,companys,getBalance,activos}) =>
     defaultOpenKeys={[]}
     onOpenChange={onOpenChange}
     >
-        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Negocios</span></span>}>
-            {companys.map((data,i)=>
-            <SubMenu key={i} title={data.nombre} onTitleClick={()=>getBalance(data)}>
-              <SubMenu key="sub3" title="Balance Genera">
-              <SubMenu key="sub4" title="Activo">
-              
-              </SubMenu>
-              </SubMenu>
-              <SubMenu key="sub5" title="Estado de Resultados">
-                  <Menu.Item key="1">Enero</Menu.Item>
-                    <Menu.Item key="2">Febreo</Menu.Item>
-              </SubMenu>
-              
-            </SubMenu>)}
+        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Construcciones</span></span>}>
+            
         </SubMenu>
-
-          
+        <SubMenu key="sub2" title={<span><Icon type="mail" /><span>Rubros</span></span>}>
+            
+        </SubMenu>
+        <SubMenu key="sub3" title={<span><Icon type="mail" /><span>Actividades</span></span>}>
+            
+        </SubMenu>
+        <SubMenu key="sub4" title={<span><Icon type="mail" /><span>Proveedores</span></span>}>
+            
+            </SubMenu>
         </Menu>
   )
 };

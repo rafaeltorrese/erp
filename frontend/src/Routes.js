@@ -7,7 +7,7 @@ import MainPage from './components/home/MainPage';
 
 export const Routes = () =>(
 <Switch>
-    <Route path='/' component={LoginContainer }  />
+    <Route exact path='/' component={LoginContainer }  />
     <Route path='/register' component={LoginContainer }  />
     <Route path='/home' component={ MainPage }  />
 </Switch>
