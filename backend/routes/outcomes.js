@@ -19,7 +19,7 @@ router.post("/" , authUtils.verifyToken,(req,res) =>{
 
 
 // get all outcomes
-router.get("/", authUtils.verifyToken,(req, res) => {
+router.get("/getOutcomes", authUtils.verifyToken,(req, res) => {
   //const { _id } = req.user;
   Outcome.find()
     .then(outcomes => {

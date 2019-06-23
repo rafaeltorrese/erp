@@ -20,7 +20,28 @@ export const getConstructions = () => {
         .catch(err => err)
 }
 
-
+export const postConstructions = (data) => {
+    const formData = new FormData()
+    if (data.image) {
+        for (let image of data.image) {
+          formData.append('images', image)
+        }
+        delete data.image
+      }
+  
+      for (let key in data) {
+        formData.append(key, data[key])
+      }
+  
+    return axios
+        .post(`${base_url}/constructions`, formData , {
+            headers: {
+                Authorization: localStorage.getItem('TOKEN')
+            }
+        })
+        .then(res => res.data)
+        .catch(err => err)
+}
 
 
 export const readConstruction = (data) => {

@@ -34,6 +34,8 @@ class LoginContainer extends Component {
 		login(data).then(r => {
 			console.log("Que es esto", r)
 			message.info('Welcome');
+			localStorage.setItem('TOKEN',r.token)
+			localStorage.setItem('USER',JSON.stringify(r.user))
 			this.props.history.push('/home')
 		}).catch(err => {
 			console.log("error", err)

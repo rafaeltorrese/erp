@@ -1,18 +1,19 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProfileContainer from '../profile/ProfileContainer';
-import BalanceContainer from '../balances/BalanceContainer';
-import Resumen from '../balances/Resumen';
-
+import ConstructionContainer from '../constructions/ConstructionContainer';
+import ActivitiesContainer from '../activities/ActivitiesContainer';
 
 const Sections = () => {
 	return (
 		<div className={'admin-sections'}>
 			<Switch>
-				<Route exact path={'/home/balance/:id'} component={BalanceContainer} />
-				<Route exact path={'/home/resumen/:id'} component={Resumen} />
-				<Route exact path={'/home/profile'} component={ProfileContainer} />
-
+				{/* <Route exact path={'/home/suppliers'} component={} />
+				<Route exact path={'/home/activities'} component={Resumen} />
+				<Route exact path={'/home/outcomes'} component={ProfileContainer} />
+				<Route exact path={'/home/constructions'} component={ConstructionContainer} />
+				*/}
+				<Route exact path={'/home/constructions'} component={ConstructionContainer} />
+				<Route exact path={'/home/activities'} component={ActivitiesContainer} />
 			</Switch>
 		</div>
 	)

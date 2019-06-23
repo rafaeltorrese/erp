@@ -7,6 +7,7 @@ import Navbar from "../navbar/Navbar";
 //import { readActivo } from "../services/Activo"
 //import { readCompanys } from '../services/Company'
 import { getConstructions } from "../../services/constructions"
+import Sections from './Sections';
 
 const { Header, Sider, Content } = Layout;
 
@@ -96,7 +97,7 @@ class MainPage extends Component {
 							toggle={this.toggle} />
 					</Header>
 					<Content style={{ margin: '1%', padding: '1%', background: '#f0f2f5', minHeight: '90vh' }}>
-					
+						<Sections/>
 					</Content>
 				</Layout>
 			</Layout>
