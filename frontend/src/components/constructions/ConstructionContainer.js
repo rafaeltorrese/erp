@@ -43,26 +43,50 @@ const columns = [
 
   const inputsForm = [
     {
-      name: 'title',
-      message : 'Please input the title of collection!',
+      name: 'code',
+      message : 'Please input the title of code!',
       required : true,
-      label:'Titulo',
+      label:'Código',
 
     
     },
     {
-        name: 'Cantidad',
-        message : 'Please input the title of Cantidad!',
+      name: 'responsible',
+      message : 'Please input the responsible of construction',
+      required : true,
+      label:'Responsable de la obra',
+
+    
+    },
+    {
+      name: 'phoneResponsible',
+      message : 'Please input the Responsible Cell Phone!',
+      required : true,
+      label:'Teléfono de Responsable',
+
+    
+    },
+    {
+      name: 'name',
+      message : 'Please input the title of construction!',
+      required : true,
+      label:'Nombre de Construcción',
+
+    
+    },
+    {
+        name: 'quantity',
+        message : 'Please input the Quantity!',
         required : false,
         label:'Cantidad',
   
       
       },
       {
-        name: 'Mujeres',
-        message : 'Please input the title of Cantidad!',
+        name: 'images',
+        message : 'Please select an image!',
         required : false,
-        label:'mujeres',
+        label:'Fotos',
   
       
       },

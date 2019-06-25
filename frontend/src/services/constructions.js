@@ -20,6 +20,9 @@ export const getConstructions = () => {
         .catch(err => err)
 }
 
+
+
+
 export const postConstructions = (data) => {
     const formData = new FormData()
     if (data.image) {

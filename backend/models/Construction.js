@@ -27,22 +27,13 @@ const constructionSchema = new Schema({
     }
 ],
   
+  quantity:{
+    type:String
+  },
+
   images:{
     type:[String]
-  },
-  location:{
-    type:{
-      type:String,
-      default:"Point"
-    },
-    street:{
-      type:String
-    },
-    coordinates:{
-      type:[Number]
-    }
-  }
-  
+  }   
 },{timestamps:true})
 
 constructionSchema.index({location:"2dsphere"})
