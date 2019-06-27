@@ -8,7 +8,7 @@ const SubMenu = Menu.SubMenu;
 
 
 
-const Navbar = ({ logOut, user, collapsed, toggle, firstName }) => (
+const Navbar = ({ logOut, user, collapsed, toggle}) => (
 	<div className={'nav'}>
 		<span>
 			<Icon
@@ -20,7 +20,7 @@ const Navbar = ({ logOut, user, collapsed, toggle, firstName }) => (
 		<span>
 			<Menu
 				mode="horizontal">
-				<SubMenu key={'sub1'} title={<span>Hola, {user.firstName}</span>}>
+				<SubMenu key={'sub1'} title={<span>Hola {user.firstName} {user.lastName} </span>}>
 					<Menu.Item>
 						<span>
 							<Icon type="user" />

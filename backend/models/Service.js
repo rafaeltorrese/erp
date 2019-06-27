@@ -12,5 +12,5 @@ const serviceSchema = new Schema({
     required:true
   }
 
-});
+},{timestamps:true});
 

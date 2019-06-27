@@ -41,7 +41,7 @@ router.post("/",(req,res) =>{
     mailer
       .send(options)
       .then(info => {
-        console.log("Mail Succesfully sended" , info);
+        console.log("Mail Succesfully was sent!!" , info);
         return res.status(200).json({
           message:"Registration Process is Completed!!, wait for Email Confirmation "
         });

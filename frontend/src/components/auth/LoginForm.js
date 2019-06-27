@@ -56,7 +56,7 @@ class LoginForm extends Component {
                     </Button>
 				</FormItem>
 
-				<span>¿No tienes cuenta? Registrate <Link to='/signup'>aqui</Link> </span>
+				<span>¿No tienes cuenta? Registrate <Link to='/register'>aqui</Link> </span>
 			</Form>
 		);
 	}

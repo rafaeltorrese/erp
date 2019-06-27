@@ -25,30 +25,44 @@ class LoginContainer extends Component {
 
 	onRegister = () => {
 		let { data } = this.state
-		//singup(data, this.props.history)
-		message.info('Registro Exitoso');
+		register(data)
+		.then(res => {
+			message.info('Registro Exitoso Bienvenido');
+			localStorage.setItem('TOKEN',res.token)
+			localStorage.setItem('USER',JSON.stringify(res.user))
+			this.props.history.push('/home')
+		})
+		.catch(err => {
+			console.log("error", err)
+			message.info('No se pudo registrar');
+		})
+
 		this.setState({ data: {} })
+		
 	}
+
 	onLogin = () => {
 		let { data } = this.state
-		login(data).then(r => {
-			console.log("Que es esto", r)
+		login(data)
+		.then(res => {
+			console.log("Inicio Sesión Exitoso", res)
 			message.info('Welcome');
-			localStorage.setItem('TOKEN',r.token)
-			localStorage.setItem('USER',JSON.stringify(r.user))
+			localStorage.setItem('TOKEN',res.token)
+			localStorage.setItem('USER',JSON.stringify(res.user))
 			this.props.history.push('/home')
-		}).catch(err => {
+		})
+		.catch(err => {
 			console.log("error", err)
 			message.info('Usuario o contraseña inválida');
 		})
 
 		this.setState({ data: {} })
-		console.log("Here", data)
 	}
 
 	render() {
 		const { pathname } = this.props.location
 		let { data } = this.state;
+		
 		return (
 			<div className="login">
 				<Card>

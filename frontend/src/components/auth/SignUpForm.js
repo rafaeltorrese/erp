@@ -28,7 +28,7 @@ class SignupForm extends Component {
 			<Form onSubmit={this.handleSubmit} className="login-form" >
 				<FormItem>
 					{getFieldDecorator('Nombre', {
-						rules: [{ required: true, message: 'Ingresa tú email!' }],
+						rules: [{ required: true, message: 'Enter Full Name!' }],
 					})(
 						<Input
 							name={'firstName'}
@@ -38,30 +38,20 @@ class SignupForm extends Component {
 							size="large" />
 					)}
 				</FormItem>
+
 				<FormItem>
 					{getFieldDecorator('Apellido Paterno', {
 						rules: [{ required: true, message: 'Enter your email!' }],
 					})(
 						<Input
-							name={'firstLastName'}
+							name={'lastName'}
 							onChange={handleText}
 							prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
 							placeholder="Apellido Paterno"
 							size="large" />
 					)}
 				</FormItem>
-				<FormItem>
-					{getFieldDecorator('RFC', {
-						rules: [{ required: true, message: 'Enter your email!' }],
-					})(
-						<Input
-							name={'rfc'}
-							onChange={handleText}
-							prefix={<Icon type="key" style={{ color: 'rgba(0,0,0,.25)' }} />}
-							placeholder="RFC"
-							size="large" />
-					)}
-				</FormItem>
+
 				<FormItem>
 					{getFieldDecorator('email', {
 						rules: [{ required: true, message: 'Enter your email!' }],
@@ -74,6 +64,8 @@ class SignupForm extends Component {
 							size="large" />
 					)}
 				</FormItem>
+
+
 				<FormItem>
 					{getFieldDecorator('password', {
 						rules: [{ required: true, message: 'Ingresa tú contraseña!' }],

@@ -7,13 +7,14 @@ const Sections = () => {
 	return (
 		<div className={'admin-sections'}>
 			<Switch>
+				
 				{/* <Route exact path={'/home/suppliers'} component={} />
 				<Route exact path={'/home/activities'} component={Resumen} />
 				<Route exact path={'/home/outcomes'} component={ProfileContainer} />
 				<Route exact path={'/home/constructions'} component={ConstructionContainer} />
 				*/}
-				<Route exact path={'/home/constructions'} component={ConstructionContainer} />
-				<Route exact path={'/home/activities'} component={ActivitiesContainer} />
+				<Route exact path={"/home/activities"} component={ActivitiesContainer} />
+				<Route exact path={'/home/constructions'} component={ConstructionContainer}/>
 			</Switch>
 		</div>
 	)

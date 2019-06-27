@@ -18,6 +18,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
           onOk={onCreate}
         >
           <Form layout="vertical">
+            
             {inputsForm.map((data,i)=>
             <Form.Item key={i} label={data.label}>
               {getFieldDecorator(data.name, {
@@ -72,7 +73,7 @@ class CollectionsPage extends React.Component {
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>
-          New Collection
+          AGREGAR
         </Button>
         <CollectionCreateForm
           wrappedComponentRef={this.saveFormRef}

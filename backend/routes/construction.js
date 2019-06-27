@@ -5,7 +5,7 @@ const authUtils = require("../helpers/auth")
 const uploader = require("../helpers/multer");
 
 // Create
-router.post("/" , 
+router.post("/" ,authUtils.verifyToken, 
 uploader.array("images"),
 (req,res) =>{
   const images = req.files.map(file => file.secure_url)
@@ -24,7 +24,7 @@ uploader.array("images"),
 
 
 // get all construction
-router.get("/", (req, res) => {
+router.get("/", authUtils.verifyToken,(req, res) => {
   //const { _id } = req.user;
   Construction.find()
     .then(constructions => {
@@ -39,7 +39,7 @@ router.get("/", (req, res) => {
 });
 
 // Update
-router.patch("/:id" , (req,res) =>{
+router.patch("/:id" , authUtils.verifyToken,(req,res) =>{
   const { id } = req.params;
   Construction.findOneAndUpdate({_id:id} , {$set:req.body} , {new:true})
   .then(construction => {
@@ -55,7 +55,7 @@ router.patch("/:id" , (req,res) =>{
 
 
 // Delete
-router.delete("/:id" , (req,res) => {
+router.delete("/:id" , authUtils.verifyToken,(req,res) => {
   const { id } = req.params;
   Construction.findOneAndRemove({_id:id})
   .then(construction =>{

@@ -40,7 +40,7 @@ const columns = [
     },
   ];
 
-class ConstructionContainer extends Component {
+class ActivitiesContainer extends Component {
 
     
     render(){
@@ -56,4 +56,4 @@ class ConstructionContainer extends Component {
 
 }
 
-export default ConstructionContainer
+export default ActivitiesContainer

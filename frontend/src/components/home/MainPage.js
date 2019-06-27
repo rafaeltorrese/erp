@@ -2,28 +2,34 @@ import React, { Component } from 'react';
 import { Layout, message } from 'antd';
 
 import LeftSide from "./Drawer";
-// import Sections from "./Sections";
 import Navbar from "../navbar/Navbar";
-//import { readActivo } from "../services/Activo"
-//import { readCompanys } from '../services/Company'
+
+import TableComponent from "../common/TableComponent"
 import { getConstructions } from "../../services/constructions"
 import Sections from './Sections';
 
+
+
+
+
+
+
+
+
+
+
+
 const { Header, Sider, Content } = Layout;
-
-
-
 
 class MainPage extends Component {
 
-	rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5'];
+
 
 
 	state = {
 		collapsed: false,
-		user: {},
-		constructions: [],
-		
+		user: "",
+		constructions: []
 	};
 
 
@@ -31,26 +37,28 @@ class MainPage extends Component {
 
 	//user Edit
 
-	// componentWillMount() {
-	// 	const userToken = (localStorage.getItem('token'));
-	// 	const userData = JSON.parse(localStorage.getItem('user'));
-	// 	if (!userToken) {
-	// 		this.props.history.push('/');
-	// 	} else {
-	// 		this.setState({ user: userData })
-	// 		console.log(userData)
-	// 		getConstructions()
-	// 			.then(res => {
+	componentWillMount() {
+		const userToken = (localStorage.getItem('TOKEN'));
+		const userData = JSON.parse(localStorage.getItem('USER'));
+		if (!userToken) {
+			console.log("There is no token")
+			this.props.history.push('/');
+		} else {
+			this.setState({ user: userData })
 
-	// 				this.setState({ constructions: res.data})
-	// 				console.log("respuesta", res)
-	// 			})
-	// 			.catch(err => {
-	// 				console.error(err);
-	// 			})
+			// Call all Constructions
+			getConstructions()
+				.then(constructions => {
 
-	// 	}
-	// }
+					this.setState({ constructions })
+
+				})
+				.catch(err => {
+					console.error(err);
+				})
+
+		}
+	}
 
 
 	toggle = () => {
@@ -70,21 +78,21 @@ class MainPage extends Component {
 
 	}
 
-	
+
 
 
 	render() {
 		let { constructions } = this.state
+		
 		return (
-
+			
 			<Layout className={'leftside'}>
 				<Sider
 					trigger={null}
 					collapsible
-					collapsed={this.state.collapsed}
-				>
+					collapsed={this.state.collapsed} >
 					<div className="logo" >{!this.state.collapsed ? 'RANCHOADMIN' : 'ADMIN'}</div>
-					<LeftSide  onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} constructions={constructions} />
+					<LeftSide onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} constructions={constructions} />
 				</Sider>
 
 
@@ -97,7 +105,10 @@ class MainPage extends Component {
 							toggle={this.toggle} />
 					</Header>
 					<Content style={{ margin: '1%', padding: '1%', background: '#f0f2f5', minHeight: '90vh' }}>
-						<Sections/>
+
+						
+						
+
 					</Content>
 				</Layout>
 			</Layout>
