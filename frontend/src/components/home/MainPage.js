@@ -104,11 +104,8 @@ class MainPage extends Component {
 							collapsed={this.state.collapsed}
 							toggle={this.toggle} />
 					</Header>
-					<Content style={{ margin: '1%', padding: '1%', background: '#f0f2f5', minHeight: '90vh' }}>
-
-						
-						
-
+					<Content style={{ margin: '1%', padding: '1%', background: '#f0f2f5', minHeight: '90vh' }}>	
+	<Sections/>
 					</Content>
 				</Layout>
 			</Layout>

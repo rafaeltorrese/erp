@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './LogStyles.css';
 import { Form, Icon, Input, Button, Card } from 'antd';
 import { Link } from 'react-router-dom'
-import { login } from '../../services/auth'
+
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
 
 	handleSubmit = (e) => {
-		console.log(this.props.data)
+		console.log(this.props)
 		e.preventDefault();
 
 		this.props.form.validateFields((err, values) => {
@@ -51,7 +51,7 @@ class LoginForm extends Component {
 					)}
 				</FormItem>
 				<FormItem>
-					<Button type="primary" htmlType="submit" className="login-form-button ant-btn-primary" size="large" style={{ borderColor: '#72c6cd', backgroundColor: '#72c6cd' }}>
+					<Button type="primary" htmlType="submit" className="login-form-button ant-btn-primary" size="large" style={{ borderColor: '#72c6cd', backgroundColor: '#72c6cd' }} >
 						Log in
                     </Button>
 				</FormItem>

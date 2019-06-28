@@ -26,35 +26,35 @@ class LoginContainer extends Component {
 	onRegister = () => {
 		let { data } = this.state
 		register(data)
-		.then(res => {
-			message.info('Registro Exitoso Bienvenido');
-			localStorage.setItem('TOKEN',res.token)
-			localStorage.setItem('USER',JSON.stringify(res.user))
-			this.props.history.push('/home')
-		})
-		.catch(err => {
-			console.log("error", err)
-			message.info('No se pudo registrar');
-		})
+			.then(res => {
+				message.info('Registro Exitoso Bienvenido');
+				localStorage.setItem('TOKEN', res.token)
+				localStorage.setItem('USER', JSON.stringify(res.user))
+				this.props.history.push('/home')
+			})
+			.catch(err => {
+				console.log("error", err)
+				message.info('No se pudo registrar');
+			})
 
 		this.setState({ data: {} })
-		
+
 	}
 
 	onLogin = () => {
 		let { data } = this.state
 		login(data)
-		.then(res => {
-			console.log("Inicio Sesión Exitoso", res)
-			message.info('Welcome');
-			localStorage.setItem('TOKEN',res.token)
-			localStorage.setItem('USER',JSON.stringify(res.user))
-			this.props.history.push('/home')
-		})
-		.catch(err => {
-			console.log("error", err)
-			message.info('Usuario o contraseña inválida');
-		})
+			.then(res => {
+				console.log("Inicio Sesión Exitoso", res)
+				message.info('Bienvenido');
+				localStorage.setItem('TOKEN', res.token)
+				localStorage.setItem('USER', JSON.stringify(res.user))
+				this.props.history.push('/home')
+			})
+			.catch(err => {
+				console.log("error", err)
+				message.info('Usuario o contraseña inválida');
+			})
 
 		this.setState({ data: {} })
 	}
@@ -62,11 +62,10 @@ class LoginContainer extends Component {
 	render() {
 		const { pathname } = this.props.location
 		let { data } = this.state;
-		
+
 		return (
 			<div className="login">
 				<Card>
-
 
 					<div className="header">
 
@@ -75,15 +74,9 @@ class LoginContainer extends Component {
 					<div>
 						{
 							pathname === '/' ?
-								<Login
-									data={data}
-									onLogin={this.onLogin}
-									handleText={this.handleText}
-								/>
+								<Login data={data} onLogin={this.onLogin} handleText={this.handleText} />
 								:
 								<Signup handleText={this.handleText} data={data} onRegister={this.onRegister} />
-
-
 						}
 
 					</div>
