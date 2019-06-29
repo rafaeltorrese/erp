@@ -18,7 +18,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
           onOk={onCreate}
         >
           <Form onSubmit={onSubmit} layout="vertical" >
-          onChange
+          
             {inputsForm.map((data, i) =>
               <Form.Item key={i} label={data.label}>
                 {getFieldDecorator(data.name, {

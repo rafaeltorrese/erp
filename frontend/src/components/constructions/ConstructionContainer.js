@@ -88,6 +88,13 @@ const inputsForm = [
     label: 'Fotos',
     type: 'field'
   },
+  {
+    name: 'address',
+    message: 'Escribir la dirección',
+    required: true,
+    label: 'DIrección',
+    type: 'text'
+  },
 ];
 
 
