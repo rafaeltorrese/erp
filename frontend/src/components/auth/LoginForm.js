@@ -14,7 +14,6 @@ class LoginForm extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				this.props.onLogin()
-
 			}
 		});
 	};

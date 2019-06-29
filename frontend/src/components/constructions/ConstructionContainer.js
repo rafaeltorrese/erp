@@ -3,10 +3,12 @@ import TableComponent from "../common/TableComponent"
 import EditableTable from '../common/Table2'
 import CollectionsPage from "../common/FormComponent"
 import { getOutcomes } from '../../services/outcomes';
+import { getConstructions, postConstructions } from '../../services/constructions';
+import { message } from 'antd'
 
 const columns = [
   {
-    title: 'Name',
+    title: 'Nombre',
     dataIndex: 'name',
   },
   {
@@ -15,83 +17,83 @@ const columns = [
     dataIndex: 'code',
   },
   {
-    title: 'Address',
+    title: 'Ubicación',
     dataIndex: 'address',
     render: text => <a href="javascript:;">{text}</a>,
-  }, {
+  },
+  {
+    title: 'Fecha Inicio',
+    dataIndex: 'initialDate',
+  },
+  {
     title: 'Responsable',
-    dataIndex: 'responsible',
+    dataIndex: 'responsible'
   },
+  {
+    title: 'Teléfono',
+    dataIndex: 'phoneResponsible'
+  },
+  {
+    title: 'Fotos',
+    dataIndex: 'images',
+    render: images => <img src={images} alt='Imagen de construcción' width='50px' height="50px" />
+  },
+
 ];
 
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    money: '￥300,000.00',
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    money: '￥1,256,000.00',
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    money: '￥120,000.00',
-    address: 'Sidney No. 1 Lake Park',
-  },
-];
+
 
 const inputsForm = [
   {
     name: 'code',
-    message: 'Please input the title of code!',
+    message: 'Introduce el Código de la Contrucción!',
     required: true,
     label: 'Código',
+    type: 'text'
   },
   {
     name: 'responsible',
-    message: 'Please input the responsible of construction',
+    message: 'Introduce el nombre del Responsable de la Obra',
     required: true,
     label: 'Responsable de la obra',
-
+    type: 'text'
 
   },
   {
     name: 'phoneResponsible',
-    message: 'Please input the Responsible Cell Phone!',
+    message: 'Introduce el Teléfono de Responsable!',
     required: true,
     label: 'Teléfono de Responsable',
-
-
+    type: 'text'
   },
   {
     name: 'name',
-    message: 'Please input the title of construction!',
+    message: 'Introduce el Nombre de la Contrucción!',
     required: true,
     label: 'Nombre de Construcción',
-
-
+    type: 'text'
   },
   {
     name: 'quantity',
     message: 'Please input the Quantity!',
     required: false,
     label: 'Cantidad',
-
-
+    type: 'text'
   },
   {
     name: 'images',
     message: 'Please select an image!',
     required: false,
     label: 'Fotos',
-
-
+    type: 'field'
+  },
+  {
+    name: 'address',
+    message: 'Escribir la dirección',
+    required: true,
+    label: 'DIrección',
+    type: 'text'
   },
 ];
 
@@ -100,32 +102,76 @@ const inputsForm = [
 
 class ConstructionContainer extends Component {
 
-
+  state = {
+    outcomes: [],
+    constructions: [],
+    inputs: {}
+  }
 
 
   componentWillMount() {
     this.getAllOutomes()
+    this.getAllConstructions()
   }
 
   //aquivan las funciones con los wqs 
   getAllOutomes = () => {
-    getOutcomes().then(res =>
-      console.log("outcomes", res)).catch(err => console.log("error", err))
+
+    getOutcomes()
+      .then(outcomes => this.setState({ outcomes }))
+      .catch(err => console.log("error", err))
   }
 
 
-  newConstruction = () => {
+  getAllConstructions = () => {
+    getConstructions()
+      .then(constructions => this.setState({ constructions }))
+      .catch(err => console.log("error", err))
+  }
 
+  onSubmit = (values) => {
+    let { constructions } = this.state
+    console.log('Ressss',values)
+    postConstructions(values)
+      .then(construction => {
+        constructions.push(construction.construction)
+        message.info('Construcción Agregada');
+        this.setState({ constructions })
+
+      })
+      .catch(err => console.log("error", err))
+  }
+
+  handleText = (e) => {
+    let { inputs } = this.state;
+    let field = e.target.name;
+    inputs[field] = e.target.value;
+    this.setState({ inputs });
+    console.log("This is Data", inputs)
+  };
+
+
+
+  onDelete = id => {
+    let { constructions } = this.state
+    // deleteConstruction(id).then(construction => {
+    //   constructions = constructions.filter(construction => construction._id !== id)
+    //   this.setState({ constructions })
+    // })
   }
 
 
   render() {
+    let { outcomes, constructions, data } = this.state
+    console.log(data)
     return (
       <div className="Home">
-        
-        <EditableTable/>
+        <CollectionsPage 
+        inputsForm={inputsForm} 
+        handleText={this.handleText} 
+        onSubmit={this.onSubmit} />
+        <TableComponent columns={columns} data={constructions} />
       </div>
-
     )
 
   }

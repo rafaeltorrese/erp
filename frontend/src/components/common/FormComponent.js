@@ -1,34 +1,47 @@
-import React, {Component} from "react"
-import { Button, Modal, Form, Input, Radio,Select } from 'antd';
-
+import React, { Component } from "react"
+import { Button, Modal, Form, Input, message, Select,Upload,Icon } from 'antd';
+import UploadButton from './UploadButton'
 const { Option } = Select;
 
 const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
     render() {
-      const { visible, onCancel, onCreate, form,inputsForm } = this.props;
+      const { visible, onCancel, onCreate, form, inputsForm, handleText,onSubmit,onChange} = this.props;
       const { getFieldDecorator } = form;
       return (
         <Modal
           visible={visible}
           title="Agregar Construcción"
-          okText="Create"
+          okText="Enviar"
           onCancel={onCancel}
           onOk={onCreate}
         >
-          <Form layout="vertical">
-            
-            {inputsForm.map((data,i)=>
-            <Form.Item key={i} label={data.label}>
-              {getFieldDecorator(data.name, {
-                rules: [{ required: data.required, message: data.message}],
-              })(<Input />)}
-            </Form.Item>)}
+          <Form onSubmit={onSubmit} layout="vertical" >
+          
+            {inputsForm.map((data, i) =>
+              <Form.Item key={i} label={data.label}>
+                {getFieldDecorator(data.name, {
+                  rules: [{ required: data.required, message: data.message }],
+                })(
+                data.type === 'text' ?<Input
+                  name={data.name}
+                  onChange={handleText}
+                  size="large"
+                />:
+                
+                <Upload  onChange={onChange} name={data.name}>
+                <Button>
+                  <Icon type="upload" /> Subir Archivo
+                </Button>
+              </Upload>
+                )}
+              </Form.Item>)}
             <Form.Item label="Rubros"  >
-                <Select defaultValue="1">
-                    <Option value="1">Option 1</Option>
-                </Select>
+              <Select defaultValue="1">
+                <Option value="1">Option 1</Option>
+                <Option value="2">Option 2</Option>
+              </Select>
             </Form.Item>
 
           </Form>
@@ -57,19 +70,30 @@ class CollectionsPage extends React.Component {
       if (err) {
         return;
       }
-
+      this.props.onSubmit(values)
       console.log('Received values of form: ', values);
       form.resetFields();
       this.setState({ visible: false });
+      
     });
   };
 
   saveFormRef = formRef => {
     this.formRef = formRef;
   };
-
+  onChange=(info)=> {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  }
+  
   render() {
-      let{inputsForm}=this.props
+    let { inputsForm } = this.props
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>
@@ -81,6 +105,7 @@ class CollectionsPage extends React.Component {
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
           inputsForm={inputsForm}
+          onChange={this.onChange}
         />
       </div>
     );
