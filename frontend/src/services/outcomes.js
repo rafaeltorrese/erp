@@ -1,21 +1,15 @@
 import axios from 'axios'
 
-const isProduction = process.env.NODE_ENV === 'production'
-const base_url = isProduction
-    ? 'https://erphack.herokuapp.com/api'
-    : 'http://localhost:3000/api'
-
-
-
+import {base_url} from "./base_url"
 
 
 export const getOutcomes = () => {
     return axios
-        .get(`${base_url}/outcomes/getOutcomes`, {
+        .get(`${base_url}/outcomes`, {
             headers: {
                 Authorization: localStorage.getItem('TOKEN')
             }
         })
         .then(res => res.data)
-        .catch(err => err.response)
+        .catch(err => {throw err.response.data})
 }

@@ -32,7 +32,8 @@ const constructionSchema = new Schema({
   },
 
   images:{
-    type:[String]
+    type:[String],
+    default:"https://res.cloudinary.com/ironhackwebdevpt2/image/upload/v1561790334/erp/san2ng1avdxcicnhjapx.png"
   }   
 },{timestamps:true})
 

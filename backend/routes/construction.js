@@ -6,16 +6,21 @@ const uploader = require("../helpers/multer");
 
 // Create
 router.post("/" ,authUtils.verifyToken, 
+//uploader.single("image"),
 uploader.array("images"),
 (req,res) =>{
+  
   const images = req.files.map(file => file.secure_url)
-
-  Construction.create({...req.body, images})
+  
+  //const image = req.file ? req.file.url : undefined;
+   
+  const building = images ? { ...req.body, images } : req.body;
+  Construction.create(building)
   .then(construction =>{
     res.status(201).json({construction})
   })
   .catch(error => {
-    res.status(200).json({
+    res.status(500).json({
       error,
       message:"Construction was not created"
     })
